@@ -5,7 +5,7 @@ import (
 )
 
 type VerifyScannersCommand struct {
-	XMLName   xml.Name `xml:"verify_scanners"`
+	XMLName   xml.Name `xml:"verify_scanner"`
 	ScannerID string   `xml:"scanner_id,attr"`
 }
 
