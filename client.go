@@ -4,6 +4,7 @@ type Client interface {
 	Authenticate(cmd *AuthenticateCommand) (resp *AuthenticateResponse, err error)
 	GetConfigs(cmd *GetConfigsCommand) (resp *GetConfigsResponse, err error)
 	GetScanners(cmd *GetScannersCommand) (resp *GetScannersResponse, err error)
+	VerifyScanner(cmd *VerifyScannersCommand) (resp *VerifyScannersResponse, err error)
 	GetPreferences(cmd *GetPreferencesCommand) (resp *GetPreferencesResponse, err error)
 	CreateConfig(cmd *CreateConfigCommand) (resp *CreateConfigResponse, err error)
 	ModifyConfig(cmd *ModifyConfigCommand) (resp *ModifyConfigResponse, err error)

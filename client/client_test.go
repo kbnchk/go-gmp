@@ -33,6 +33,14 @@ func (m *mockConn) Execute(command interface{}, response interface{}) error {
 		}
 	}
 
+	if cmd, ok := command.(*gmp.VerifyScannersCommand); ok {
+		if cmd.ScannerID == "ee0311e7-3247-4425-bb9c-866d59f1e0e9" {
+			(*response.(*gmp.VerifyScannersResponse)).Status = "200"
+		} else {
+			(*response.(*gmp.VerifyScannersResponse)).Status = "400"
+		}
+	}
+
 	if cmd, ok := command.(*gmp.GetPreferencesCommand); ok {
 		if cmd.ConfigID == "4b49617e-d1d8-44b8-af81-f4675b56f837" {
 			(*response.(*gmp.GetPreferencesResponse)).Status = "200"
@@ -177,6 +185,24 @@ func TestGetScanners(t *testing.T) {
 	cmd := &gmp.GetScannersCommand{}
 	cmd.ScannerID = "ee0311e7-3247-4425-bb9c-866d59f1e0e9"
 	resp, err := cli.GetScanners(cmd)
+	if err != nil {
+		t.Fatalf("Unexpected error during GetScanners: %s", err)
+	}
+
+	if resp.Status != "200" {
+		t.Fatalf("Unexpected status. \nExpected: 200 \nGot: %s", resp.Status)
+	}
+}
+
+func TestVerifyScanners(t *testing.T) {
+	cli := New(mockedConnection())
+	if cli == nil {
+		t.Fatalf("Client is nil")
+	}
+
+	cmd := &gmp.VerifyScannersCommand{}
+	cmd.ScannerID = "ee0311e7-3247-4425-bb9c-866d59f1e0e9"
+	resp, err := cli.VerifyScanner(cmd)
 	if err != nil {
 		t.Fatalf("Unexpected error during GetScanners: %s", err)
 	}

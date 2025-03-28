@@ -34,6 +34,12 @@ func (cli *client) GetScanners(cmd *gmp.GetScannersCommand) (resp *gmp.GetScanne
 	return resp, err
 }
 
+func (cli *client) VerifyScanner(cmd *gmp.VerifyScannersCommand) (resp *gmp.VerifyScannersResponse, err error) {
+	resp = new(gmp.VerifyScannersResponse)
+	err = cli.conn.Execute(cmd, resp)
+	return resp, err
+}
+
 func (cli *client) GetPreferences(cmd *gmp.GetPreferencesCommand) (resp *gmp.GetPreferencesResponse, err error) {
 	resp = new(gmp.GetPreferencesResponse)
 	err = cli.conn.Execute(cmd, resp)
