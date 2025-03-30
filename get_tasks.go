@@ -145,7 +145,7 @@ type GetTasksResponseTaskSchedule struct {
 	Trash        bool      `xml:"trash"`
 	FirstTime    time.Time `xml:"first_time"`
 	NextTime     string    `xml:"next_time"`
-	Icalendar    time.Time `xml:"icalendar"`
+	Icalendar    string    `xml:"icalendar"`
 	Period       int       `xml:"period"`
 	PeriodMonths int       `xml:"period_months"`
 	Duration     int       `xml:"duration"`
